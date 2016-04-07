@@ -29,3 +29,4 @@
 <li>Run php artisan migrate in the command line to run the migrations</li>
 <li>Run the server with php artisan serve</li>
 </ul>
+

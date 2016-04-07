@@ -96,6 +96,22 @@ class UsersController extends Controller
         //
     }
     public function home(){
-        return view('users.home');
+        $movies=DB::table('movietable')->get();
+        $movienames=DB::table('movietable')->select('name')->get();
+        //return $movies['name'];
+       // $movieavg=[];
+        //var_dump($movie);
+        foreach($movienames as $movie)
+        {
+            //$moviename=$movie['name'];
+            //return $mo.viename;
+             $movieavg[$movie->name]=DB::table('movierating')->where('movie','=',$movie->name)->avg('rating');
+             if($movieavg[$movie->name]==0)
+             {
+                 $movieavg[$movie->name]="Unrated Average";
+             }
+            //echo $movieavg[$movie->name];
+        }
+        return view('users.home',compact('movies','movieavg'));
     }
 }

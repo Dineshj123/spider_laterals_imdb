@@ -21,3 +21,4 @@ Route::get('/logout',['as'=>'logout','uses'=>'Authcontroller@logout']);
 Route::resource('users','UsersController',['only'=>['create','store']]);
 Route::get('/home',['middleware'=>'auth','as'=>'home','uses'=>'UsersController@home']);
 });
+

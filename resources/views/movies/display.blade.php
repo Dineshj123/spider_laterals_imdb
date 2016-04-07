@@ -6,10 +6,15 @@
 		No. Of users voted for this movie : {{$moviecount}}
 	</p>
 	<p>
-		Average rating of the movie is : {{$movieavg}}
+		Average rating of the movie is :
+            @if($movieavg!="Unrated Average")
+              {{round($movieavg,2)}}
+            @else
+              {{$movieavg}}
+            @endif
 	</p>
   <p>
-    Your previous rating is : {{$user_rating[0]}}
+    Your previous rating is : {{$user_rating}}
   </p>
 		Rate the movie here:
 		<form method="POST" action="/imdb/public/moviereview">

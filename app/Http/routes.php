@@ -24,3 +24,5 @@ Route::get('/movie/{moviename}',['middleware'=>'auth','as'=>'moviename','uses'=>
 Route::post('/moviereview','UsersController@review');
 });
 
+
+

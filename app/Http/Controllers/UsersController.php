@@ -123,7 +123,7 @@ class UsersController extends Controller
         $moviecount= DB::table('movierating')->where('movie','=',$moviename)->count();
         $movieavg=DB::table('movierating')->where('movie','=',$moviename)->avg('rating');
         if($movieavg==0){
-            $movieavg='Unrated average';
+            $movieavg='Unrated Average';
         }
         $user_rating=DB::table('movierating')->where('movie',$moviename)
                                              ->where('user',$name)
@@ -133,6 +133,7 @@ class UsersController extends Controller
         {
             $user_rating="Unrated";
         }
+        $user_rating = $user_rating[0];
         return view('movies.display',compact('moviename','moviecount','movieavg','user_rating'));   
     }
 
@@ -160,7 +161,7 @@ class UsersController extends Controller
         $moviecount= DB::table('movierating')->where('movie','=',$moviename)->count();
         $movieavg=DB::table('movierating')->where('movie','=',$moviename)->avg('rating');
         if($movieavg==0){
-            $movieavg='Unrated average';
+            $movieavg='Unrated Average';
         }
         $user_rating=DB::table('movierating')->where('movie',$moviename)
                                              ->where('user',$name)
@@ -169,6 +170,7 @@ class UsersController extends Controller
         {
             $user_rating="Unrated";
         }
+        $user_rating = $user_rating[0];
         //return $user_rating;
          return view('movies.display',compact('moviename','moviecount','movieavg','user_rating'));
     }

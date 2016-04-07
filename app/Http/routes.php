@@ -23,4 +23,3 @@ Route::get('/home',['middleware'=>'auth','as'=>'home','uses'=>'UsersController@h
 Route::get('/movie/{moviename}',['middleware'=>'auth','as'=>'moviename','uses'=>'UsersController@lists']);
 Route::post('/moviereview','UsersController@review');
 });
-

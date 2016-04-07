@@ -11,6 +11,12 @@
 					<p>
 						Average Rating : {{$movieavg[$movie->name]}}
 					</p>
+					<p>	
+						Description : {{ $movie->description }}
+					</p>
+					<p>	
+						Year Of release : {{ $movie->yearofrelease }}
+					</p>
 				</div>
 				@endforeach
 			</div>

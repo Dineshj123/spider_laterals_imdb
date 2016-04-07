@@ -8,6 +8,9 @@
 	<p>
 		Average rating of the movie is : {{$movieavg}}
 	</p>
+  <p>
+    Your previous rating is : {{$user_rating[0]}}
+  </p>
 		Rate the movie here:
 		<form method="POST" action="/imdb/public/moviereview">
 			{{csrf_field()}}

@@ -18,15 +18,7 @@ class CreateMovieTable extends Migration
             $table->timestamps();
         });
     }
-<<<<<<< HEAD
- /**
-=======
-    /**
->>>>>>> 25cbcb9e001783a9d571c8704581f82aa6e6f4ce
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
         Schema::drop('movietable');

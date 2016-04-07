@@ -115,4 +115,41 @@ class UsersController extends Controller
         }
         return view('users.home',compact('movies','movieavg'));
     }
+    public function lists($moviename){
+        $moviecount= DB::table('movierating')->where('movie','=',$moviename)->count();
+        $movieavg=DB::table('movierating')->where('movie','=',$moviename)->avg('rating');
+        if($movieavg==0){
+            $movieavg='Unrated average';
+        }
+        return view('movies.display',compact('moviename','moviecount','movieavg'));   
+    }
+
+    public function review(Request $request){
+        $name=\Auth::user()->name;
+        $moviename=$request->moviename;
+        $rating=$request->rating;
+        $users=DB::table('movierating')->where([
+            ['user','=',$name],
+            ['movie','=',$moviename],
+            ])->get();
+        if($users){
+            DB::table('movierating')
+            ->where([
+                ['user','=',$name],
+                ['movie','=',$moviename],
+                ])
+            ->update(['rating'=>$rating]);
+        }
+        else{
+            DB::table('movierating')->insert(
+                ['user'=>$name,'movie'=>$moviename,'rating'=>$rating]
+                );
+        }
+        $moviecount= DB::table('movierating')->where('movie','=',$moviename)->count();
+        $movieavg=DB::table('movierating')->where('movie','=',$moviename)->avg('rating');
+        if($movieavg==0){
+            $movieavg='Unrated average';
+        }
+        return view('movies.display',compact('moviename','moviecount','movieavg'));
+    }
 }

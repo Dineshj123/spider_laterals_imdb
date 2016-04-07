@@ -2,7 +2,6 @@
 
 @section('content')
 	<h3>Welcome {{ \Auth::user()->name }}</h3>
-<<<<<<< HEAD
 	@foreach(array_chunk($movies,3) as $row)
 			<div class="row">
 				@foreach($row as $movie)
@@ -17,6 +16,3 @@
 			</div>
 		@endforeach
 @endsection
-=======
-@endsection
->>>>>>> ad12a219ea34ae1c04e9f4b315862dade6bda11d

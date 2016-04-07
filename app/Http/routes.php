@@ -20,5 +20,7 @@ Route::post('/handleLogin',['as'=>'handleLogin','uses'=>'Authcontroller@handleLo
 Route::get('/logout',['as'=>'logout','uses'=>'Authcontroller@logout']);	
 Route::resource('users','UsersController',['only'=>['create','store']]);
 Route::get('/home',['middleware'=>'auth','as'=>'home','uses'=>'UsersController@home']);
+Route::get('/movie/{moviename}',['middleware'=>'auth','as'=>'moviename','uses'=>'UsersController@lists']);
+Route::post('/moviereview','UsersController@review');
 });
 

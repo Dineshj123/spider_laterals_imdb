@@ -1,7 +1,7 @@
 # spider_laterals_imdb
 #Overview
-### This project is about imdb movie rating
-#Route:
+<strong>IMDB Movie Rating</strong>
+#Routes:
 <ul>
 <li>login</li>
 <li>logout</li>
@@ -11,7 +11,7 @@
 <li>movie/moviename</li>
 <li>moviereview</li>
 </ul>
-#table:
+#Tables:
 <ul>
 <li>users</li>
 <li>movietable</li>

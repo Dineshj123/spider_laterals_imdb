@@ -22,6 +22,7 @@
 			@endif
 		</ul>
 		@yield('content')
+		
 	</div>
 </body>
 </html>

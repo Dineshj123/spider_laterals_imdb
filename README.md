@@ -22,7 +22,7 @@
 <p>
 </p>
 <ul>
-<li>Git Clone the repository https://github.com/Dineshj123/spider_laterals_imdb into your system</li>
+<li>Git Clone the repository https://github.com/Dineshj123/spider_laterals_imdb.git into your system</li>
 <li>composer install in the command line to get the Laravel Dependency Manager</li>
 <li>Change .env.example to .env and run php artisan key:generate</li>
 <li>Edit the database parameters in .env file</li>

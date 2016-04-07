@@ -30,3 +30,4 @@
 <li>Run the server with php artisan serve</li>
 </ul>
 ![screenshot 2016-04-08 01 56 25](https://cloud.githubusercontent.com/assets/12624713/14366273/86d11d30-fd2f-11e5-8c45-8c7c855ba2a0.png)
+![screenshot 2016-04-08 01 56 41](https://cloud.githubusercontent.com/assets/12624713/14366349/e8113846-fd2f-11e5-9fc2-21ce99cdaf62.png)

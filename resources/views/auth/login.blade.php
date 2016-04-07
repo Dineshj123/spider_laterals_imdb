@@ -23,6 +23,7 @@
 			{!! Form::password('password',array('class'=>'form-control')) !!}
 			
 		</div>
+		
 		{!! Form::token() !!}
 		{!! Form::submit('LogIn',array('class'=>'btn btn-default')) !!}
 	{!! Form::close() !!}

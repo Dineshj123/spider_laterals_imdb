@@ -23,6 +23,7 @@
 			{!! Form::text('email',null,array('class'=>'form-control')) !!}
 
 		</div>
+		
 		<div class="form-group">
 			{!! Form::label('password') !!}
 			{!! Form::password('password',array('class'=>'form-control')) !!}

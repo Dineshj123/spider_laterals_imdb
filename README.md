@@ -20,7 +20,6 @@
 #BUILD INSTRUCTIONS
 # spider_laterals_imdb
 <p>
-<strong>IMDB Movie Rating </strong>
 </p>
 <ul>
 <li>Git Clone the repository https://github.com/Dineshj123/spider_laterals_imdb into your system</li>

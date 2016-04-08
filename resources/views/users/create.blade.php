@@ -14,7 +14,7 @@
 	@endif
 	{!! Form::open(array('route'=>'users.store'))  !!}
 		<div class="form-group">
-			{!! Form::label('name','Username') !!}
+			{!! Form::label('name','name') !!}
 			{!! Form::text('name',null,array('class'=>'form-control')) !!}
 
 		</div>

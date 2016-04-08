@@ -14,7 +14,7 @@ class Authcontroller extends Controller
     }
     public function handleLogin(Request $request){
     	$this->validate($request,User::$login_validation_rules);
-    	$data=$request->only('email','password');
+    	$data=$request->only('name','password');
     	if(\Auth::attempt($data)){
     		return redirect()->intended('home');
     	}

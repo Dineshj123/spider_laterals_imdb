@@ -14,8 +14,8 @@
 	@endif
 	{!! Form::open(array('route'=>'handleLogin'))  !!}
 		<div class="form-group">
-			{!! Form::label('email') !!}
-			{!! Form::text('email',null,array('class'=>'form-control')) !!}
+			{!! Form::label('name') !!}
+			{!! Form::text('name',null,array('class'=>'form-control')) !!}
 
 		</div>
 		<div class="form-group">

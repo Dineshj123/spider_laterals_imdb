@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     public static $login_validation_rules = [
-        'email'=>'required|email|exists:users',
+        'name'=>'required|exists:users',
         'password'=>'required'
     ];
     public static $create_validation_rules = [

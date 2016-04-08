@@ -42,11 +42,13 @@ class UsersController extends Controller
         $data=$request->only('name','email','password');
         $data['password']=bcrypt($data['password']);
         $user=User::create($data);
-        if($user){
+        if($user)
+        {
             \Auth::login($user);
             return redirect()->route('home');
         }
-        else{
+        else
+        {
             return "This is the error";
         }
         return back()->withInput();
@@ -96,11 +98,10 @@ class UsersController extends Controller
     {
         //
     }
-    public function home(){
+    public function home()
+    {
         $movies=DB::table('movietable')->get();
         $movienames=DB::table('movietable')->select('name')->get();
-        $moviedescription=DB::table('movietable')->select('description')->get();
-        $movieyearofrelease=DB::table('movietable')->select('yearofrelease')->get();
         //return $movies['name'];
        // $movieavg=[];
         //var_dump($movie);
@@ -115,14 +116,17 @@ class UsersController extends Controller
              }
             //echo $movieavg[$movie->name];
         }
-        return view('users.home',compact('movies','movieavg','moviedescription','movieyearofrelease'));
+        return view('users.home',compact('movies','movieavg'));
     }
-    public function lists($moviename){
+    
+    public function lists($moviename)
+    {
         $name=\Auth::user()->name;
         //return $name;
         $moviecount= DB::table('movierating')->where('movie','=',$moviename)->count();
         $movieavg=DB::table('movierating')->where('movie','=',$moviename)->avg('rating');
-        if($movieavg==0){
+        if($movieavg==0)
+        {
             $movieavg='Unrated Average';
         }
         $user_rating=DB::table('movierating')->where('movie',$moviename)
@@ -137,7 +141,8 @@ class UsersController extends Controller
         return view('movies.display',compact('moviename','moviecount','movieavg','user_rating'));   
     }
 
-    public function review(Request $request){
+    public function review(Request $request)
+    {
         $name=\Auth::user()->name;
         $moviename=$request->moviename;
         $rating=$request->rating;
@@ -145,7 +150,8 @@ class UsersController extends Controller
             ['user','=',$name],
             ['movie','=',$moviename],
             ])->get();
-        if($users){
+        if($users)
+        {
             DB::table('movierating')
             ->where([
                 ['user','=',$name],
@@ -153,14 +159,16 @@ class UsersController extends Controller
                 ])
             ->update(['rating'=>$rating]);
         }
-        else{
+        else
+        {
             DB::table('movierating')->insert(
                 ['user'=>$name,'movie'=>$moviename,'rating'=>$rating]
                 );
         }
         $moviecount= DB::table('movierating')->where('movie','=',$moviename)->count();
         $movieavg=DB::table('movierating')->where('movie','=',$moviename)->avg('rating');
-        if($movieavg==0){
+        if($movieavg==0)
+        {
             $movieavg='Unrated Average';
         }
         $user_rating=DB::table('movierating')->where('movie',$moviename)

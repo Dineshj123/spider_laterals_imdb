@@ -23,6 +23,9 @@ Route::get('/home',['middleware'=>'auth','as'=>'home','uses'=>'UsersController@h
 Route::get('/movie/{moviename}',['middleware'=>'auth','as'=>'moviename','uses'=>'UsersController@lists']);
 Route::post('/moviereview','UsersController@review');
 });
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 5a56bb704c7b0122d97c745552dab41b0bf93810

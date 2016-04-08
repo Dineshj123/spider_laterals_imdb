@@ -2,7 +2,7 @@
 
 @section('content')
 	<h3>Lists Of movies :</h3>
-	@foreach(array_chunk($movies,3) as $row)
+	@foreach($movies->chunk(3) as $row)
 			<div class="row">
 				@foreach($row as $movie)
 					<div class="col-md-4">
@@ -25,6 +25,6 @@
 				</div>
 				@endforeach
 			</div>
-		@endforeach
+	@endforeach
 @endsection
 

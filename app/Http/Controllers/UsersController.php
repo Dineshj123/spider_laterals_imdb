@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use DB;
+use App\Movie;
+use App\Movies;
 class UsersController extends Controller
 {
     /**
@@ -100,8 +102,8 @@ class UsersController extends Controller
     }
     public function home()
     {
-        $movies=DB::table('movietable')->get();
-        $movienames=DB::table('movietable')->select('name')->get();
+        $movies=Movies::get();
+        $movienames=Movies::select('name')->get();
         //return $movies['name'];
        // $movieavg=[];
         //var_dump($movie);
@@ -109,7 +111,7 @@ class UsersController extends Controller
         {
             //$moviename=$movie['name'];
             //return $mo.viename;
-             $movieavg[$movie->name]=DB::table('movierating')->where('movie','=',$movie->name)->avg('rating');
+             $movieavg[$movie->name]=Movie::where('movie','=',$movie->name)->avg('rating');
              if($movieavg[$movie->name]==0)
              {
                  $movieavg[$movie->name]="Unrated Average";
@@ -123,21 +125,29 @@ class UsersController extends Controller
     {
         $name=\Auth::user()->name;
         //return $name;
-        $moviecount= DB::table('movierating')->where('movie','=',$moviename)->count();
-        $movieavg=DB::table('movierating')->where('movie','=',$moviename)->avg('rating');
+        $moviecount= Movie::where('movie','=',$moviename)->count();
+        $movieavg=Movie::where('movie','=',$moviename)->avg('rating');
         if($movieavg==0)
         {
             $movieavg='Unrated Average';
         }
-        $user_rating=DB::table('movierating')->where('movie',$moviename)
+        $user_rating=Movie::where('movie',$moviename)
                                              ->where('user',$name)
                                              ->pluck('rating');
         //return $user_rating;    
-        if ($user_rating==0)
+        // if ($user_rating[0]==0 || isEmpty($user_rating[0]))
+        // {
+        //     $user_rating="Unrated";
+        // }
+        // $user_rating = $user_rating[0];
+        if ($user_rating->count()==0 )
         {
             $user_rating="Unrated";
         }
-        $user_rating = $user_rating[0];
+        else
+        {
+            $user_rating = $user_rating[0];
+        }
         return view('movies.display',compact('moviename','moviecount','movieavg','user_rating'));   
     }
 
@@ -146,14 +156,13 @@ class UsersController extends Controller
         $name=\Auth::user()->name;
         $moviename=$request->moviename;
         $rating=$request->rating;
-        $users=DB::table('movierating')->where([
+        $users=Movie::where([
             ['user','=',$name],
             ['movie','=',$moviename],
             ])->get();
-        if($users)
+        if(count($users)!=0)
         {
-            DB::table('movierating')
-            ->where([
+            Movie::where([
                 ['user','=',$name],
                 ['movie','=',$moviename],
                 ])
@@ -161,24 +170,30 @@ class UsersController extends Controller
         }
         else
         {
-            DB::table('movierating')->insert(
-                ['user'=>$name,'movie'=>$moviename,'rating'=>$rating]
-                );
+            $movie=new Movie;
+            $movie->user=$name;
+            $movie->movie=$moviename;
+            $movie->rating=$rating;
+            $movie->save();
+            //return $movie;
         }
-        $moviecount= DB::table('movierating')->where('movie','=',$moviename)->count();
-        $movieavg=DB::table('movierating')->where('movie','=',$moviename)->avg('rating');
+        $moviecount= Movie::where('movie','=',$moviename)->count();
+        $movieavg=Movie::where('movie','=',$moviename)->avg('rating');
         if($movieavg==0)
         {
             $movieavg='Unrated Average';
         }
-        $user_rating=DB::table('movierating')->where('movie',$moviename)
+        $user_rating=Movie::where('movie',$moviename)
                                              ->where('user',$name)
                                              ->pluck('rating');
-        if ($user_rating==0)
+        if ($user_rating->count()==0 )
         {
             $user_rating="Unrated";
         }
-        $user_rating = $user_rating[0];
+        else
+        {
+            $user_rating = $user_rating[0];
+        }
         //return $user_rating;
          return view('movies.display',compact('moviename','moviecount','movieavg','user_rating'));
     }
